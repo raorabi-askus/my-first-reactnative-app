@@ -1,0 +1,117 @@
+[
+    {
+      "id": 1,
+      "title": "Toyota Corolla",
+      "description": "Reliable compact car with good fuel efficiency."
+    },
+    {
+      "id": 2,
+      "title": "Honda Civic",
+      "description": "Popular sedan known for its practicality and reliability."
+    },
+    {
+      "id": 3,
+      "title": "Ford Mustang",
+      "description": "Iconic American sports car with powerful engines."
+    },
+    {
+      "id": 4,
+      "title": "Chevrolet Silverado",
+      "description": "Full-size pickup truck known for its towing capacity."
+    },
+    {
+      "id": 5,
+      "title": "Tesla Model S",
+      "description":
+        "Luxury electric sedan with impressive range and acceleration."
+    },
+    {
+      "id": 6,
+      "title": "BMW 3 Series",
+      "description": "Compact luxury sedan with a sporty driving experience."
+    },
+    {
+      "id": 7,
+      "title": "Mercedes-Benz E-Class",
+      "description":
+        "Elegant midsize luxury sedan known for comfort and technology."
+    },
+    {
+      "id": 8,
+      "title": "Audi Q5",
+      "description":
+        "Premium compact SUV with a well-crafted interior and advanced features."
+    },
+    {
+      "id": 9,
+      "title": "Subaru Outback",
+      "description":
+        "Versatile crossover with all-wheel drive and rugged capabilities."
+    },
+    {
+      "id": 10,
+      "title": "Jeep Wrangler",
+      "description":
+        "Iconic off-road SUV known for its ruggedness and open-air driving experience."
+    },
+    {
+      "id": 11,
+      "title": "Porsche 911",
+      "description":
+        "Legendary sports car with timeless design and exhilarating performance."
+    },
+    {
+      "id": 12,
+      "title": "Volvo XC90",
+      "description":
+        "Luxurious SUV with Scandinavian design and advanced safety features."
+    },
+    {
+      "id": 13,
+      "title": "Ford F-150",
+      "description":
+        "Best-selling full-size pickup truck with robust capability and durability."
+    },
+    {
+      "id": 14,
+      "title": "Toyota RAV4",
+      "description":
+        "Popular compact SUV known for reliability and practicality."
+    },
+    {
+      "id": 15,
+      "title": "Nissan Rogue",
+      "description":
+        "Compact crossover SUV with comfortable ride and fuel efficiency."
+    },
+    {
+      "id": 16,
+      "title": "Chevrolet Corvette",
+      "description":
+        "American sports car with powerful V8 engines and agile handling."
+    },
+    {
+      "id": 17,
+      "title": "Mazda CX-5",
+      "description":
+        "Compact SUV with engaging driving dynamics and upscale interior."
+    },
+    {
+      "id": 18,
+      "title": "Hyundai Sonata",
+      "description":
+        "Midsize sedan offering value, comfort, and a range of features."
+    },
+    {
+      "id": 19,
+      "title": "Kia Telluride",
+      "description":
+        "Midsize SUV with spacious seating and user-friendly technology."
+    },
+    {
+      "id": 20,
+      "title": "Honda CR-V",
+      "description":
+        "Compact SUV known for reliability, comfort, and practicality."
+    }
+  ]
