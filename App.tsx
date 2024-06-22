@@ -8,24 +8,32 @@
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React from 'react';
-import Details from './Screens/Details';
-import Home from './Screens/Home';
+import Details from './src/Screens/Details';
+import Home from './src/Screens/Home';
+import store from './App/store';
+import {Provider} from 'react-redux';
 
 function App(): React.JSX.Element {
   const Stack = createNativeStackNavigator();
   return (
-    <NavigationContainer>
-      <Stack.Navigator
-        screenOptions={{
-          headerTitleAlign: 'center',
-          headerStyle: {backgroundColor: 'blue'},
-          headerTintColor: '#fff',
-          headerTitleStyle: {fontWeight: 'bold'},
-        }}>
-        <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name="Details" component={Details} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        <Stack.Navigator
+          screenOptions={{
+            headerTitleAlign: 'center',
+            headerStyle: {backgroundColor: '#6e3b6e'},
+            headerTintColor: '#fff',
+            headerTitleStyle: {fontWeight: 'bold'},
+          }}>
+          <Stack.Screen name="Home" component={Home} />
+          <Stack.Screen
+            name="Details"
+            options={{title: 'Memes'}}
+            component={Details}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </Provider>
   );
 }
 

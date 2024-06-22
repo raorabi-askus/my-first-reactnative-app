@@ -1,4 +1,4 @@
-import React, {useCallback, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {
   ActivityIndicator,
   Button,
@@ -17,28 +17,37 @@ import {
   StatusBar,
   Switch,
 } from 'react-native';
+import {useDispatch, useSelector} from 'react-redux';
+import {fetchMemes} from '../../Features/memesApi';
 
 // import carsData from './Data/cars.json';
 interface Car {
   id: string; // Assuming 'id' is a unique string identifier
-  title: string;
-  description: string;
+  name: string;
+  captions: string;
+  url: string;
 }
-const carsData: Car[] = require('../Data/cars.json');
+// const carsData: Car[] = require('../Data/cars.json');
 
 function Details(): React.JSX.Element {
   // states
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
   const [selectedCar, setSelectedCar] = useState<string>();
   const [modalVisible, setModalVisible] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
+  const dispatch = useDispatch();
+  const {memes, loading} = useSelector(state => state.memes);
+
+  useEffect(() => {
+    dispatch(fetchMemes() as any);
+  }, [dispatch]);
 
   // function to show activity indicator
-  (function () {
-    setTimeout(() => {
-      setLoading(false);
-    }, 3000);
-  })();
+  // (() => {
+  //   setTimeout(() => {
+  //     setLoading(false);
+  //   }, 3000);
+  // })();
 
   // function to open the modal
   const onPressButton = () => {
@@ -66,7 +75,7 @@ function Details(): React.JSX.Element {
         <View style={styles?.container}>
           {/* <Text>Welcome to Details Page</Text> */}
           {/* indicator to display loading */}
-          <ActivityIndicator size="large" color="#0000ff" />
+          <ActivityIndicator size="large" color="#6e3b6e" />
           {/* <Text>Please wait a moment.</Text> */}
         </View>
       ) : (
@@ -75,25 +84,25 @@ function Details(): React.JSX.Element {
             // to refresh site
             refreshControl={
               <RefreshControl
-                tintColor="blue"
+                tintColor="#6e3b6e"
                 refreshing={refreshing}
                 onRefresh={onRefresh}
               />
             }>
             {/* <Text>Hello! This is my first app</Text> */}
 
-            <Text>Click on button to view modal</Text>
+            <Text style={styles?.title}>Memes</Text>
 
             {/* switch button to open modal */}
-            <Switch
+            {/* <Switch
               trackColor={{true: 'pink', false: 'orange'}}
               thumbColor={modalVisible ? 'blue' : 'red'}
               value={modalVisible}
               onValueChange={onPressButton}
-            />
+            /> */}
 
             {/* modal code */}
-            <Modal
+            {/* <Modal
               visible={modalVisible}
               presentationStyle="fullScreen"
               animationType="slide">
@@ -105,26 +114,28 @@ function Details(): React.JSX.Element {
                   <Text>Close</Text>
                 </Pressable>
               </View>
-            </Modal>
+            </Modal> */}
 
             {/* button to open modal */}
-            <Button
+            {/* <Button
               color="green"
               title="Open Modal"
               nextFocusUp={23}
               onPress={onPressButton}
-            />
+            /> */}
           </ScrollView>
           {/* FlatList of car items along with image and background image, futrthermore we can also use section list here and virualizedlist also  */}
           <FlatList
-            data={carsData}
+            style={styles?.list}
+            data={memes}
             renderItem={({item}) => {
               const backgroundColor =
-                item.id === selectedCar ? '#6e3b6e' : '#f9c23c';
+                item.id === selectedCar ? '#6e3b6e' : '#F6F5F2';
               const color = item.id === selectedCar ? 'white' : 'black';
               return (
-                <ImageBackground
-                  source={require('../assets/beautiful-blurred-green-nature-background-ai-generated-photo.jpg')}>
+                <View style={{backgroundColor: '#BC7FCD'}}>
+                  {/* <ImageBackground
+                   source={require('../../assets/beautiful-blurred-green-nature-background-ai-generated-photo.jpg')}> */}
                   {/* to remove opactiy effect here we can use TouchableHeighlight */}
                   <TouchableOpacity onPress={() => handleSelectedItem(item)}>
                     <View style={[styles?.items, {backgroundColor}]}>
@@ -133,23 +144,24 @@ function Details(): React.JSX.Element {
                         alt="Car Image"
                         // source={require('../assets/0x0.jpg')}
                         source={{
-                          uri: 'https://media.architecturaldigest.com/photos/63079fc7b4858efb76814bd2/16:9/w_1920%2Cc_limit/9.%2520DeLorean-Alpha-5%2520%255BDeLorean%255D.jpg',
+                          uri: item?.url,
                         }}
                       />
                       <View>
                         <Text style={[styles?.itemTitle, {color}]}>
-                          {item?.title}
+                          {item?.name}
                         </Text>
                         <Text
                           numberOfLines={3}
                           ellipsizeMode="tail"
                           style={[styles?.itemDescription, {color}]}>
-                          {item?.description}
+                          Captions: {item?.captions}
                         </Text>
                       </View>
                     </View>
                   </TouchableOpacity>
-                </ImageBackground>
+                  {/* </ImageBackground> */}
+                </View>
               );
             }}
             keyExtractor={(item: Car) => item.id}
@@ -168,6 +180,16 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginTop: 50,
   },
+  list: {
+    marginBottom: 100,
+  },
+  title: {
+    fontSize: 30,
+    fontWeight: 'bold',
+    margin: 10,
+    color: '#6e3b6e',
+    textAlign: 'center',
+  },
   items: {
     flexDirection: 'row',
     justifyContent: 'center',
@@ -180,6 +202,7 @@ const styles = StyleSheet.create({
   itemTitle: {
     fontSize: 20,
     fontWeight: 'bold',
+    width: 250,
   },
   itemDescription: {
     fontSize: 16,
